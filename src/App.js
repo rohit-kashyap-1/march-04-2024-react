@@ -1,27 +1,34 @@
 import logo from './logo.svg';
 import './App.css';
-import Page from './components/Page';
-
-
-import img_about from './components/images/about-us.jpg'
-import img_services from './components/images/services.jpg'
-import img_blog from './components/images/blog.png'
-import img_api  from './components/images/api.png'
-import img_contact from './components/images/contact.webp'
+import { useState } from 'react';
+import StateDemo from './components/state/StateDemo';
 
 function App() {
-  const pages = [
-    {title:"About Us",description:"About the company",image:img_about,link:"about-us"},
-    {title:"Services",description:"What we offer: html web design",image:img_services,link:"services"},
-    {title:"Blog",description:"Read our latest articles",image:img_blog,link:"blog"},
-    {title:"API",description:"Buy our api",image:img_api,link:"api"},
-    {title:"Contact Us",description:"Fill the form",image:img_contact,link:"contact-us"},
-    {title:"Support",description:"Support Page",image:img_contact,link:"contact-us"}
-  ]
+  let [name,setName] = useState('')
+  let [country,setCountry]  =useState('India')
+
+  function putInConsole(event){
+    let value = event.target.value
+    setName(value)
+
+    
+  }
+
+  function putCountry(event){
+    setCountry(event.target.value)
+  }
   return (
     <div className="App">
-        {pages.map(function(value){return <Page title={value.title} description={value.description} image={value.image} link={value.link} />})}
-        
+         {/* <StateDemo /> */}
+         <h1>{country}</h1>
+         <form>
+          <input type='text' name='name' value={name} onChange={putInConsole} />
+          <select name='country' value={country} onChange={putCountry}>
+            <option value={''}>Selecct</option>
+            <option value={'India'}>India</option>
+            <option value={'Germany'}>Germany</option>
+          </select>
+         </form>
     </div>
   );
 }
